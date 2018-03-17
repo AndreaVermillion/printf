@@ -16,7 +16,7 @@ static int		ft_result(size_t result, int negative, int count)
         return ((int)result);
 }
 
-int				ft_atoi(const char *str)
+int     ft_atoi(const char *str)
 {
     int		negative;
     size_t	result;

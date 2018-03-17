@@ -3,14 +3,13 @@
 void    ft_find_all_fields(t_data *a, char c)
 {
     a->f_r = a->f_s;
-    a->spe = c;
-    a->fla = ft_search_fla(a);
-    a->wid_raw = ft_search_wid(a);
-    a->pre_raw = ft_search_pre(a);
-    a->len = ft_search_len(a);
+    a->fla = ft_search_fla(a,c);
+    a->wid_raw = ft_search_wid(a,c);
+    a->pre_raw = ft_search_pre(a,c);
+    a->len = ft_search_len(a,c);
 }
 
-char *ft_search_fla(t_data *a)
+char    *ft_search_fla(t_data *a, char c)
 {
     char *ret;
     char *str;
@@ -19,7 +18,7 @@ char *ft_search_fla(t_data *a)
     temp = ft_strdup(a->f_s);
     if (temp == NULL || ft_strlen(temp) == 1)
         return(NULL);
-    if ((ret = ft_find_fla(a)))
+    if ((ret = ft_find_fla(a, c)))
         a->f_r = ret;
     if (ret == NULL || (ft_strcmp(ret, temp) == 0))
         return (NULL);
@@ -27,7 +26,7 @@ char *ft_search_fla(t_data *a)
     return (str);
 }
 
-char *ft_search_wid(t_data *a)
+char    *ft_search_wid(t_data *a, char c)
 {
     char *ret;
     char *str;
@@ -36,7 +35,7 @@ char *ft_search_wid(t_data *a)
     temp = ft_strdup(a->f_r);
     if (temp == NULL || ft_strlen(temp) == 1)
         return(NULL);
-    if ((ret = ft_find_wid(a)))
+    if ((ret = ft_find_wid(a, c)))
         a->f_r = ret;
     if (ft_strcmp(ret, temp) == 0)
         return (NULL);
@@ -44,7 +43,7 @@ char *ft_search_wid(t_data *a)
     return (str);
 }
 
-char *ft_search_pre(t_data *a)
+char    *ft_search_pre(t_data *a, char c)
 {
     char *ret;
     char *str;
@@ -53,7 +52,7 @@ char *ft_search_pre(t_data *a)
     temp = ft_strdup(a->f_r);
     if (temp == NULL || ft_strlen(temp) == 1)
         return(NULL);
-    if ((ret = ft_find_pre(a)))
+    if ((ret = ft_find_pre(a,c)))
         a->f_r = ret;
     if (ft_strcmp(ret, temp) == 0)
         return (NULL);
@@ -61,7 +60,7 @@ char *ft_search_pre(t_data *a)
     return (str);
 }
 
-char *ft_search_len(t_data *a)
+char    *ft_search_len(t_data *a, char c)
 {
     char *ret;
     char *str;
@@ -70,7 +69,7 @@ char *ft_search_len(t_data *a)
     temp = ft_strdup(a->f_r);
     if (temp == NULL || ft_strlen(temp) == 1)
         return(NULL);
-    if ((ret = ft_find_len(a)))
+    if ((ret = ft_find_len(a, c)))
         a->f_r = ret;
     if (ft_strcmp(ret, temp) == 0)
         return (NULL);

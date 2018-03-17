@@ -5,7 +5,6 @@ void ft_set_everything_to_zero(t_data *a)
     a->f_s = NULL; // char *
     a->f_r = NULL; // char *
     a->grp = 0; // int
-    a->spe = '0'; //char
     a->wtp = 1;
     a->fla = NULL; //char        *
     a->fla_len = 0; // int

@@ -19,6 +19,7 @@ typedef struct s_data
 
     char        *f_s;
     char        *f_r;
+    char        wrong_type;
 
     /*------- All the fields -------*/
 
@@ -109,7 +110,6 @@ char	*ft_strnew(size_t size);
 int    ft_printf(char* fmt,...);
 char	*ft_strcpy(char *dst, const char *src);
 char	*ft_strncpy(char *dst, const char *src, size_t n);
-int		ft_isalpha(int a);
 
 
 
@@ -118,25 +118,24 @@ int		ft_isalpha(int a);
 
 /* Step 0: Set Structure element to zero */
 
-void ft_set_everything_to_zero(t_data *a);
+void    ft_print_no_format_characters(t_data *a, char **temp);
+void    ft_set_everything_to_zero(t_data *a);
 
     /* Step 1: Find '%' */
 
-int	    ft_find_percent_glued_percent(char *s);
+int	    ft_find_percent_with_percent(char *s);
 int	    ft_find_percent_to_percent(char *s);
-int	    ft_find_percent_to_wrong_type(char *s);
 int	    ft_find_percent_is_alone(char *s);
 
-char  *ft_print_percent_glued_percent(char *s, t_data *a);
-char  *ft_print_percent_to_percent(char *s, t_data *a);
-char  *ft_print_percent_to_wrong_type(char *s);
+char    *ft_print_percent_to_wrong_type(char *s, t_data *a, char c);
+char    *ft_print_percent_with_percent(char *s, t_data *a);
+int     ft_verify_all_wid(t_data *a);
 
-
-char	*ft_find_spe(char *s);
+char	*ft_find_spe(char *s, t_data *a);
 
     /* Step 2: Find appropriate group ---  group 1 ===> // s_S_c_C_p) || for group 2 ===> // o_O_x_X_u_U || for group 3 ===> // d_D_i */
 
-void    ft_find_group(char spe, t_data *a);
+void    ft_find_group(t_data *a);
 
     /* Step 3: Store the entire format in struct */
 
@@ -146,15 +145,15 @@ int	    ft_find_format(char *s, char c, t_data *a);
 
 void    ft_find_all_fields(t_data *a, char c);
 
-char	*ft_find_fla(t_data *a);
-char	*ft_find_wid(t_data *a);
-char	*ft_find_pre(t_data *a);
-char	*ft_find_len(t_data *a);
+char	*ft_find_fla(t_data *a, char c);
+char	*ft_find_wid(t_data *a, char c);
+char	*ft_find_pre(t_data *a, char c);
+char	*ft_find_len(t_data *a, char c);
 
-char    *ft_search_fla(t_data *a);
-char    *ft_search_wid(t_data *a);
-char    *ft_search_pre(t_data *a);
-char    *ft_search_len(t_data *a);
+char    *ft_search_fla(t_data *a, char c);
+char    *ft_search_wid(t_data *a, char c);
+char    *ft_search_pre(t_data *a, char c);
+char    *ft_search_len(t_data *a, char c);
 
 char	*ft_cpy_to_char(char *s, char c);
 
@@ -165,17 +164,38 @@ int     ft_verify_all_fields(t_data *a, char c);
     /* Step 6: Get the right arg type in struct */
 
 void    ft_get_arg_type(t_data *a, va_list arg);
-char	*ft_itoa_base_unsigned(unsigned long long value, int base); // !!! this function was taken from the internet - I must do it again before submitting the project
-char	*ft_itoa_base_signed(signed long long value, int base); // !!! this function was taken from the internet - I must do it again before submitting the project
+void    ft_select_args_group1_len_1(t_data *a, va_list arg);
+void    ft_select_args_group1_len_0(t_data *a, va_list arg);
+char	*ft_itoa_base_unsigned(unsigned long long value, int base);
+char	*ft_itoa_base_signed(signed long long value, int base);
 
     /* Step 7: Find the lengths of different args */
 
 void    ft_find_arg_len(t_data *a);
+void    ft_select_args_group3_len_2(t_data *a, va_list arg);
+void    ft_select_args_group3_len_1(t_data *a, va_list arg);
+void    ft_select_args_group3_len_0(t_data *a, va_list arg);
+void    ft_select_args_group2_len_0(t_data *a, va_list arg);
+void    ft_select_args_group2_len_1(t_data *a, va_list arg);
+void    ft_select_args_group2_len_2(t_data *a, va_list arg);
 
-    /* Step 8: Apply Field */
+/* Step 8: Apply Field */
 
 void    ft_apply_fields(t_data *a);
+void    ft_apply_pre_grp2(t_data *a);
+void    ft_apply_pre_grp3(t_data *a);
+void    ft_apply_pre_grp2_grp3_positive_value_no_flags(t_data *a);
 void    ft_apply_precision(t_data *a);
+void    ft_apply_width_grp_1(t_data *a);
+void    ft_apply_width_grp_1_p(t_data *a);
+void    ft_apply_width_grp_1_c(t_data *a);
+void    ft_apply_width_grp_2(t_data *a);
+void    ft_apply_width_grp_3(t_data *a);
+void    ft_apply_special_zero_conditions_for_c(t_data *a);
+void    ft_apply_special_zero_conditions_for_s(t_data *a);
+void    ft_apply_special_zero_conditions(t_data *a);
+void    ft_find_diff_arg_len_vs_wid_vs_pre(t_data *a);
+
 char	*ft_cpy_to_nb(char *dst, const char *src, size_t start, int n);
 
 void    ft_apply_pre_grp1(t_data *a);

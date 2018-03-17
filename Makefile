@@ -6,25 +6,31 @@
 #    By: ancardi <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/08 21:24:13 by ancardi           #+#    #+#              #
-#    Updated: 2018/03/12 22:15:16 by ancardi          ###   ########.fr        #
+#    Updated: 2018/03/16 20:25:17 by ancardi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-SRCS = ft_apply_fields.c \
-	   ft_copy_fields.c \
-	   ft_find_fields.c \
-	   ft_find_arg_type.c \
-	   ft_functions_libft.c \
-	   ft_search_fields.c \
-	   ft_veri_fields.c \
-	   main.c \
-	   ft_apply_precision.c \
-	   ft_count_printed_char.c \
-	   ft_set_struct_to_zero.c \
-	   ft_print_percents.c \
-	   ft_find_percents.c
+SRCS = apply_fields.c \
+	   apply_precision_group1.c \
+	   apply_precision_group2.c \
+	   apply_precision_group3.c \
+	   apply_width_group1.c \
+	   apply_width_group2.c \
+	   apply_width_group3.c \
+	   apply_zero_conditions.c \
+	   assist_functions.c \
+	   find_arg_group1.c \
+	   find_arg_group2.c \
+	   find_arg_group3.c \
+	   find_fields.c \
+	   libft_fonctions.c \
+	   parse_fields.c \
+	   print_elements.c \
+	   printf.c \
+	   reset_structures.c \
+	   verify_fields.c\
 
 OBJS = $(SRCS:.c=.o)
 
