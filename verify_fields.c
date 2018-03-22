@@ -32,9 +32,12 @@ void ft_verify_fla_group3_array_part1(char *array, t_data *a)
 
     checker = (char **) malloc(sizeof(char *) * 16);
     checker[15] = NULL;
-    n = -1;
-    while (++n < 15)
-        checker[n] = ft_strnew(8);
+    n = 0;
+    while (n < 15)
+    {
+        checker[n] = (char*)malloc(sizeof(char) * 8);
+        n++;
+    }
     checker[0] = ft_strcpy(checker[0], "1111+-");
     checker[1] = ft_strcpy(checker[1], "1101+-");
     checker[2] = ft_strcpy(checker[2], "1110+-");
@@ -52,6 +55,11 @@ void ft_verify_fla_group3_array_part1(char *array, t_data *a)
     checker[14] = ft_strcpy(checker[14], "0001 ");
 
     ft_verify_fla_group3_array_part2(checker, array, a);
+
+    n = 0;
+    while (checker[++n] != NULL)
+        free(checker[n]);
+    free(checker);
 }
 
 int ft_verify_fla_group3(t_data *a) // group3 : d_D_i
@@ -78,7 +86,9 @@ int ft_verify_fla_group3(t_data *a) // group3 : d_D_i
             array[3] = '1';
         i++;
     }
+    free(temp);
     ft_verify_fla_group3_array_part1(array, a);
+    free(array);
     return (1);
 }
 
@@ -126,6 +136,12 @@ void ft_verify_fla_group2_array_part1(char *array, t_data *a)
     checker[6] = ft_strcpy(checker[6], "0010");
 
     ft_verify_fla_group2_array_part2(checker, array, a);
+
+    n = 0;
+    while (checker[++n] != NULL)
+        free(checker[n]);
+    free(checker);
+
 }
 
 int ft_verify_fla_group2(t_data *a, char c) // group2 : 'o_O_x_X_u_U'
@@ -152,6 +168,7 @@ int ft_verify_fla_group2(t_data *a, char c) // group2 : 'o_O_x_X_u_U'
         i++;
     }
     ft_verify_fla_group2_array_part1(array, a);
+    free(array);
     return (1);
 }
 
@@ -169,6 +186,7 @@ int ft_verify_fla_group1(t_data *a)         // group1 : 's_S_c_C_p'
         a->fla = ft_strdup("-");
         return (1);
     }
+    free(temp);
     return (0);
 }
 
@@ -184,6 +202,7 @@ int ft_verify_all_fla(t_data *a, char spe) // Step2
         (a->grp == 3 && !ft_verify_fla_group3(a)))
         return (0);
     a->fla_len = ft_strlen(a->fla);
+    //free(temp);
     return (1);
 }
 
@@ -199,10 +218,14 @@ int ft_verify_all_wid(t_data *a)
     while (temp[i])               // Step 2. Checking it is only digits
     {
         if (!ft_isdigit(temp[i]))
+        {
+            free (temp);
             return (0);
+        }
         i++;
     }
     a->wid_int = ft_atoi(a->wid_raw);
+    free(temp);
     return (1);
 }
 
@@ -232,6 +255,7 @@ int ft_verify_all_pre(t_data *a)
         i++;
     }
     a->pre_raw = ft_cpy_to_char(temp + 1,temp[i]);
+    free(temp);
     a->pre_int = ft_atoi(a->pre_raw);
     return (1);
 }

@@ -51,6 +51,7 @@ int     ft_find_format(char *s, char c, t_data *a)
     }
     sub[i] = '\0';
     a->f_s = sub;
+    free(sub);
     return(0);
 }
 
@@ -91,6 +92,7 @@ void    ft_find_arg_len(t_data *a)
             temp = ft_strdup("(null)");
             a->arg_str_conv = temp;
             a->arg_len = ft_strlen(temp);
+            free(temp);
         }
         else if ((a->spe == 'c' || a->spe == 'C') && (a->arg_char_conv != 0))
             a->arg_len = 1;

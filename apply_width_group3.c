@@ -6,6 +6,7 @@ void    ft_apply_width_grp_3_len_2(t_data *a, char *temp, int i)
         a->arg_str_conv = ft_cpy_to_nb(temp, a->arg_str_conv, 0, a->wid_int);
     if ((a->fla[0] == '+' && a->fla[1] == '0') || (a->fla[0] == ' ' && a->fla[1] == '0'))
     {
+
         a->arg_str_conv = ft_cpy_to_nb(temp, a->arg_str_conv, a->wid_int - a->wid_gap, a->wid_int);
         if (a->pre_int == 0 && a->fla[0] == '+' && a->fla[1] == '0')
         {
@@ -30,8 +31,10 @@ void    ft_apply_width_grp_3_len_2(t_data *a, char *temp, int i)
 
 void    ft_apply_width_grp_3_len_1(t_data *a, char *temp, int i)
 {
+    char *clean_leaks;
     if (a->fla[0] == '0' || a->fla[0] == '+' || a->fla[0] == ' ')
     {
+        clean_leaks = a->arg_str_conv;
         a->arg_str_conv = ft_cpy_to_nb(temp, a->arg_str_conv, a->wid_int - a->wid_gap, a->wid_int);
         if (a->pre_int == 0 && a->fla[0] == '0')
         {
@@ -48,22 +51,33 @@ void    ft_apply_width_grp_3_len_1(t_data *a, char *temp, int i)
                     temp[i] = '0';
             }
             a->arg_str_conv = temp;
+            free(clean_leaks);
         }
     }
     if (a->fla[0] == '-')
+    {
+        clean_leaks = a->arg_str_conv;
         a->arg_str_conv = ft_cpy_to_nb(temp, a->arg_str_conv, 0, a->wid_int);
+        free(clean_leaks);
+//        free(temp);
+    }
 }
 
 void    ft_apply_width_grp_3(t_data *a)
 {
     char *temp;
+//    char *clean_leaks;
 
-    temp = ft_strnew(a->wid_int);
-    ft_memset(temp, ' ', a->wid_int);
     if (a->wid_gap > 0)
     {
+        temp = ft_strnew(a->wid_int);
+        ft_memset(temp, ' ', a->wid_int);
         if (a->fla_len == 0)
+        {
+//            clean_leaks = a->arg_str_conv;
             a->arg_str_conv = ft_cpy_to_nb(temp, a->arg_str_conv, a->wid_int - a->wid_gap, a->wid_int);
+//            free(clean_leaks);
+        }
         if (a->fla_len == 1)
             ft_apply_width_grp_3_len_1(a, temp, 0);
         if (a->fla_len == 2)

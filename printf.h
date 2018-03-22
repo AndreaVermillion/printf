@@ -107,9 +107,10 @@ int		ft_strcmp(const char *dst, const char *src);
 char	*ft_strdup(const char *s1);
 size_t		ft_strlen(const char *str);
 char	*ft_strnew(size_t size);
-int    ft_printf(char* fmt,...);
+int    ft_printf(const char* fmt,...);
 char	*ft_strcpy(char *dst, const char *src);
 char	*ft_strncpy(char *dst, const char *src, size_t n);
+void	ft_memdel(void **ap);
 
 
 
@@ -203,5 +204,9 @@ void    ft_apply_pre_grp1(t_data *a);
     /* Step 9: Count everything has been printed (selected based on the type) */
 
 void    ft_count_printed_characters(t_data *a);
+
+    /*Step 10 */
+
+void    ft_unicode_convert(unsigned int nb);
 
 #endif

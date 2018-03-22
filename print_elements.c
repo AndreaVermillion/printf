@@ -6,10 +6,11 @@ void    ft_count_printed_characters(t_data *a)
 
     // 3 (char) and 5 (pointer) is directly printed when the width is applied;
 
+//    printf("print->%p\n", a->arg_str_conv);
     if (a->wtp == 1 || a->wtp == 2 ||  a->wtp == 6)
         ft_putstr(a->arg_str_conv);
-
     a->printed_char_counter = a->printed_char_counter + a->arg_len;
+
 }
 
 void    ft_print_percent_with_wrong_type_without_flag(t_data *a, int i)
@@ -67,6 +68,7 @@ char    *ft_print_percent_to_wrong_type(char *s, t_data *a, char c)
         nb++;
     while (nb-- >= 0)
         s++;
+    free(temp);
     return (s);
 }
 
@@ -95,6 +97,7 @@ char    *ft_print_percent_with_percent(char *s, t_data *a)
         nb_of_percent--;
         s++;
     }
+    free(temp_percent);
     return (s);
 }
 

@@ -4,6 +4,7 @@
 void    ft_apply_pre_grp2_hash_x_part_2(t_data *a)
 {
     char *temp;
+    char *clean_leaks;
     int i;
     int d;
 
@@ -16,7 +17,10 @@ void    ft_apply_pre_grp2_hash_x_part_2(t_data *a)
         temp = ft_strnew(a->arg_len + 2);
         ft_memset(temp, '0', a->arg_len + 2);
         temp[1] = 'x';
+        clean_leaks = a->arg_str_conv;
         a->arg_str_conv = ft_cpy_to_nb(temp, a->arg_str_conv, 2, a->arg_len + 2);
+        free(clean_leaks);
+        free(temp);
     }
     if (a->pre_int > i)
     {
@@ -27,31 +31,46 @@ void    ft_apply_pre_grp2_hash_x_part_2(t_data *a)
             d = a->pre_int - a->arg_len + 2;
         else
             d = a->pre_int;
+        clean_leaks = a->arg_str_conv;
         a->arg_str_conv = ft_cpy_to_nb(temp, a->arg_str_conv, d, a->pre_int + 2);
+        free(clean_leaks);
+        free(temp);
     }
 }
 
 void    ft_apply_pre_grp2_hash_x_part_1(t_data *a)
 {
     char *temp;
+    char *clean_leaks;
 
     temp = ft_strnew(a->arg_len + 3);
     ft_memset(temp, '0', a->arg_len + 3);
     temp[1] = 'x';
+    clean_leaks = a->arg_str_conv;
     a->arg_str_conv = ft_cpy_to_nb(temp, a->arg_str_conv, 3, a->arg_len + 3);
+    free(clean_leaks);
+    free(temp);
 }
 
 void    ft_apply_pre_grp2_hash_x_zero_condition(t_data *a)
 {
     char *temp;
+    char *clean_leaks;
 
     if (a->pre_int == 0)
+    {
+        clean_leaks = a->arg_str_conv;
         a->arg_str_conv = ft_strdup("0");
+        free(clean_leaks);
+    }
     else
     {
         temp = ft_strnew(a->pre_int);
         ft_memset(temp, '0', a->pre_int);
+        clean_leaks = a->arg_str_conv;
         a->arg_str_conv = temp;
+        free(clean_leaks);
+        free(temp);
     }
 }
 
@@ -68,20 +87,29 @@ void    ft_apply_pre_grp2_hash_x(t_data *a)
 void    ft_apply_pre_grp2_hash_o_zero_condition(t_data *a)
 {
     char *temp;
+    char *clean_leaks;
 
     if (a->pre_int == 0)
+    {
+        clean_leaks = a->arg_str_conv;
         a->arg_str_conv = ft_strdup("0");
+        free(clean_leaks);
+    }
     else
     {
         temp = ft_strnew(a->pre_int);
         ft_memset(temp, '0', a->pre_int);
+        clean_leaks = a->arg_str_conv;
         a->arg_str_conv = temp;
+        free(clean_leaks);
+        free(temp);
     }
 }
 
 void    ft_apply_pre_grp2_hash_o(t_data *a)
 {
     char *temp;
+    char *clean_leaks;
     int i;
 
     if (a->arg_atoi_int == 0)
@@ -96,13 +124,17 @@ void    ft_apply_pre_grp2_hash_o(t_data *a)
         {
             temp = ft_strnew(a->arg_len);
             ft_memset(temp, '0', a->arg_len);
+            clean_leaks =  a->arg_str_conv;
             a->arg_str_conv = ft_cpy_to_nb(temp, a->arg_str_conv, 1, a->arg_len + 1);
+            free(clean_leaks);
         }
         if (a->pre_int > i)
         {
             temp = ft_strnew(a->pre_int);
             ft_memset(temp, '0', a->pre_int);
+            clean_leaks =  a->arg_str_conv;
             a->arg_str_conv = ft_cpy_to_nb(temp, a->arg_str_conv, (a->pre_int) - a->arg_len, a->pre_int);
+            free(clean_leaks);
         }
     }
 }

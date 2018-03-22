@@ -57,14 +57,19 @@ void    ft_apply_width_grp_2_len_1(t_data *a, char *temp, int i)
 void    ft_apply_width_grp_2(t_data *a)
 {
     char *temp;
+    char *clean_leaks;
     int i;
 
-    temp = ft_strnew(a->wid_int);
-    ft_memset(temp, ' ', a->wid_int);
     if (a->wid_gap > 0)
     {
+        temp = ft_strnew(a->wid_int);
+        ft_memset(temp, ' ', a->wid_int);
         if (a->fla_len == 0)
+        {
+            clean_leaks = a->arg_str_conv;
             a->arg_str_conv = ft_cpy_to_nb(temp, a->arg_str_conv, a->wid_int - a->wid_gap, a->wid_int);
+            free(clean_leaks);
+        }
         if (a->fla_len == 1)
             ft_apply_width_grp_2_len_1(a, temp, 0);
         if (a->fla_len == 2)
@@ -72,7 +77,6 @@ void    ft_apply_width_grp_2(t_data *a)
     }
     if (a->spe == 'X')
     {
-        temp = NULL;
         temp = ft_strdup(a->arg_str_conv);
         i = 0;
         while (temp[i])

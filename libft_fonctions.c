@@ -285,3 +285,12 @@ char		*ft_itoa_base_signed(signed long long int n, int base)
     i = 0;
     return (ft_convert_signed(n, base, str, i));
 }
+
+void	ft_memdel(void **ap)
+{
+    if (ap && *ap)
+    {
+        free(*ap);
+        *ap = NULL;
+    }
+}

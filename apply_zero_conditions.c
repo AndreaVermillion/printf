@@ -74,7 +74,6 @@ void    ft_apply_special_zero_conditions_wid_bigger_than_1(t_data *a)
 
 void    ft_apply_special_zero_conditions_wid_smaller_or_equal_to_1(t_data *a)
 {
-
     if ((a->fla_len == 2) && (a->fla[0] == '-') && (a->fla[1] == '#') && (a->spe == 'o' || a->spe == 'O'))
         a->arg_str_conv = ft_strdup("0");
     else if ((a->fla_len == 0) ||
@@ -83,9 +82,13 @@ void    ft_apply_special_zero_conditions_wid_smaller_or_equal_to_1(t_data *a)
              (a->fla_len > 0 && a->fla[0] == '#' && (a->spe == 'x' || a->spe == 'X')))
     {
         if (a->wid_int == 0)
+        {
             a->arg_str_conv = ft_strdup("");
+        }
         else
+        {
             a->arg_str_conv = ft_strdup(" ");
+        }
     }
     else
     {
@@ -98,8 +101,6 @@ void    ft_apply_special_zero_conditions_wid_smaller_or_equal_to_1(t_data *a)
 
 void    ft_apply_special_zero_conditions(t_data *a)
 {
-    char *temp;
-    temp = NULL;
     if ((a->pre_int == 1 && (a->pre_raw[0] == '.' || a->pre_raw[0] == '0')))
     {
         if (a->wid_int <= 1)
