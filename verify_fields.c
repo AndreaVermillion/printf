@@ -57,9 +57,9 @@ void ft_verify_fla_group3_array_part1(char *array, t_data *a)
     ft_verify_fla_group3_array_part2(checker, array, a);
 
     n = 0;
-    while (checker[++n] != NULL)
-        free(checker[n]);
-    free(checker);
+    // while (checker[++n] != NULL)
+    //     free(checker[n]);
+    // free(checker);
 }
 
 int ft_verify_fla_group3(t_data *a) // group3 : d_D_i
@@ -86,9 +86,9 @@ int ft_verify_fla_group3(t_data *a) // group3 : d_D_i
             array[3] = '1';
         i++;
     }
-    free(temp);
+    // free(temp);
     ft_verify_fla_group3_array_part1(array, a);
-    free(array);
+    // free(array);
     return (1);
 }
 
@@ -138,9 +138,9 @@ void ft_verify_fla_group2_array_part1(char *array, t_data *a)
     ft_verify_fla_group2_array_part2(checker, array, a);
 
     n = 0;
-    while (checker[++n] != NULL)
-        free(checker[n]);
-    free(checker);
+    // while (checker[++n] != NULL)
+    //     free(checker[n]);
+    // free(checker);
 
 }
 
@@ -168,7 +168,7 @@ int ft_verify_fla_group2(t_data *a, char c) // group2 : 'o_O_x_X_u_U'
         i++;
     }
     ft_verify_fla_group2_array_part1(array, a);
-    free(array);
+    // free(array);
     return (1);
 }
 
@@ -186,7 +186,7 @@ int ft_verify_fla_group1(t_data *a)         // group1 : 's_S_c_C_p'
         a->fla = ft_strdup("-");
         return (1);
     }
-    free(temp);
+    // free(temp);
     return (0);
 }
 
@@ -219,13 +219,13 @@ int ft_verify_all_wid(t_data *a)
     {
         if (!ft_isdigit(temp[i]))
         {
-            free (temp);
+            //free (temp);
             return (0);
         }
         i++;
     }
     a->wid_int = ft_atoi(a->wid_raw);
-    free(temp);
+    // free(temp);
     return (1);
 }
 
@@ -255,7 +255,7 @@ int ft_verify_all_pre(t_data *a)
         i++;
     }
     a->pre_raw = ft_cpy_to_char(temp + 1,temp[i]);
-    free(temp);
+    // free(temp);
     a->pre_int = ft_atoi(a->pre_raw);
     return (1);
 }

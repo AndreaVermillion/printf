@@ -18,7 +18,7 @@ void    ft_apply_pre_grp1(t_data *a)
             {
                 temp = ft_strnew(a->pre_int);
                 a->arg_str_conv = ft_strncpy(temp, a->arg_str_conv, a->pre_int);
-                free(temp);
+              //  free(temp);
             }
         }
     }

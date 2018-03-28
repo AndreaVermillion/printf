@@ -64,9 +64,9 @@ int ft_printf(const char* fmt,...)
     }
     va_end(arg);
     result = a->printed_char_counter;
-    free(ptr);
+    // free(ptr);
     ft_memdel((void**)&a->len);
-    free(a);
+    // free(a);
     return (result);
 }
 

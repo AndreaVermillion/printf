@@ -58,7 +58,7 @@ void    ft_apply_width_grp_3_len_1(t_data *a, char *temp, int i)
     {
         clean_leaks = a->arg_str_conv;
         a->arg_str_conv = ft_cpy_to_nb(temp, a->arg_str_conv, 0, a->wid_int);
-        free(clean_leaks);
+        // free(clean_leaks);
 //        free(temp);
     }
 }

@@ -90,7 +90,7 @@ char    *ft_print_percent_to_wrong_type(char *s, t_data *a, char c)
         nb++;
     while (nb-- >= 0)
         s++;
-    free(temp);
+    // free(temp);
     return (s);
 }
 
@@ -119,7 +119,7 @@ char    *ft_print_percent_with_percent(char *s, t_data *a)
         nb_of_percent--;
         s++;
     }
-    free(temp_percent);
+    // free(temp_percent);
     return (s);
 }
 

@@ -36,14 +36,14 @@ void    ft_apply_width_grp_1_p(t_data *a)
         if (a->fla_len == 0)
         {
             a->arg_str_conv = ft_cpy_to_nb(temp_pointer, a->arg_str_conv, a->wid_int - a->arg_len, a->wid_int);
-            free(clean_leaks);
-            free(temp_pointer);
+            // free(clean_leaks);
+            // free(temp_pointer);
         }
         if (a->fla_len == 1)
         {
             a->arg_str_conv = ft_cpy_to_nb(temp_pointer, a->arg_str_conv, 0, a->wid_int + 2);
-            free(clean_leaks);
-            free(temp_pointer);
+            // free(clean_leaks);
+            // free(temp_pointer);
         }
     }
     a->arg_len = ft_strlen(a->arg_str_conv);
@@ -75,7 +75,7 @@ void    ft_apply_width_grp_1_c(t_data *a)
             while (temp[++i] == ' ')
                 ft_putchar(temp[i]);
             ft_putchar(a->arg_char_conv);
-            free(clean_leaks);
+            // free(clean_leaks);
         }
         if (a->fla_len != 0)
         {
@@ -85,10 +85,10 @@ void    ft_apply_width_grp_1_c(t_data *a)
             i = 0;
             while (temp[++i] == ' ')
                 ft_putchar(temp[i]);
-            free(clean_leaks);
+            // free(clean_leaks);
         }
         a->arg_len = ft_strlen(a->arg_str_conv);
-        free(temp);
+        // free(temp);
     }
 }
 

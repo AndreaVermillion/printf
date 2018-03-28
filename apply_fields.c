@@ -303,7 +303,7 @@ void    ft_apply_fields(t_data *a)
         a->arg_len = ft_strlen(temp);
         ft_find_diff_arg_len_vs_wid_vs_pre(a);
         ft_apply_width(a);
-        free(temp);
+      //  free(temp);
         temp = ft_strdup(a->arg_str_conv);
         a->arg_len = ft_strlen(temp);
         if (a->arg_atoi_int == 0)
@@ -312,7 +312,7 @@ void    ft_apply_fields(t_data *a)
         ft_memdel((void **)&a->fla);
         ft_memdel((void **)&a->pre_raw);
         ft_putstr(a->arg_str_conv);
-        free(temp);
+      //  free(temp);
     }
     if (a->wtp == 2) //string of characters
     {
@@ -324,13 +324,13 @@ void    ft_apply_fields(t_data *a)
         ft_apply_width_grp_1(a);
         if (a->arg_len == 0)
             ft_apply_special_zero_conditions_for_s(a);
-        free(temp);
+      //  free(temp);
         temp = ft_strdup(a->arg_str_conv);
         a->arg_len = ft_strlen(temp);
         ft_memdel((void **)&a->fla);
         ft_memdel((void **)&a->pre_raw);
         ft_putstr(a->arg_str_conv);
-        free(temp);
+      //  free(temp);
     }
     if (a->wtp == 3) //string of characters in unicode
     {

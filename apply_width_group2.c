@@ -68,7 +68,7 @@ void    ft_apply_width_grp_2(t_data *a)
         {
             clean_leaks = a->arg_str_conv;
             a->arg_str_conv = ft_cpy_to_nb(temp, a->arg_str_conv, a->wid_int - a->wid_gap, a->wid_int);
-            free(clean_leaks);
+            // free(clean_leaks);
         }
         if (a->fla_len == 1)
             ft_apply_width_grp_2_len_1(a, temp, 0);

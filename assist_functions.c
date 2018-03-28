@@ -51,7 +51,7 @@ int     ft_find_format(char *s, char c, t_data *a)
     }
     sub[i] = '\0';
     a->f_s = sub;
-    free(sub);
+    // free(sub);
     return(0);
 }
 

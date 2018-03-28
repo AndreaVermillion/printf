@@ -18,7 +18,7 @@ char    *ft_search_fla(t_data *a, char c)
     temp = ft_strdup(a->f_s);
     if (temp == NULL || ft_strlen(temp) == 1)
     {
-        free (temp);
+        // free (temp);
         return (NULL);
     }
     if ((ret = ft_find_fla(a, c)))
@@ -38,18 +38,18 @@ char    *ft_search_wid(t_data *a, char c)
     temp = ft_strdup(a->f_r);
     if (temp == NULL || ft_strlen(temp) == 1)
     {
-        free(temp);
+        // free(temp);
         return (NULL);
     }
     if ((ret = ft_find_wid(a, c)))
         a->f_r = ret;
     if (ft_strcmp(ret, temp) == 0)
     {
-        free(temp);
+        // free(temp);
         return (NULL);
     }
     str = ft_cpy_to_char(temp, ret[0]);
-    free(temp);
+    // free(temp);
     return (str);
 }
 
@@ -62,18 +62,18 @@ char    *ft_search_pre(t_data *a, char c)
     temp = ft_strdup(a->f_r);
     if (temp == NULL || ft_strlen(temp) == 1)
     {
-        free(temp);
+        // free(temp);
         return (NULL);
     }
     if ((ret = ft_find_pre(a,c)))
         a->f_r = ret;
     if (ft_strcmp(ret, temp) == 0)
     {
-        free(temp);
+        // free(temp);
         return (NULL);
     }
     str = ft_cpy_to_char(temp, ret[0]);
-    free(temp);
+    // free(temp);
     return (str);
 }
 
@@ -86,17 +86,17 @@ char    *ft_search_len(t_data *a, char c)
     temp = ft_strdup(a->f_r);
     if (temp == NULL || ft_strlen(temp) == 1)
     {
-        free(temp);
+        // free(temp);
         return (NULL);
     }
     if ((ret = ft_find_len(a, c)))
         a->f_r = ret;
     if (ft_strcmp(ret, temp) == 0)
     {
-        free(temp);
+        // free(temp);
         return (NULL);
     }
     str = ft_cpy_to_char(temp, ret[0]);
-    free(temp);
+    // free(temp);
     return (str);
 }
