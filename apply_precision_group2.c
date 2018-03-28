@@ -122,8 +122,8 @@ void    ft_apply_pre_grp2_hash_o(t_data *a)
             i = a->arg_len;
         if (a->pre_int <= i)
         {
-            temp = ft_strnew(a->arg_len);
-            ft_memset(temp, '0', a->arg_len);
+            temp = ft_strnew(a->arg_len + 1);
+            ft_memset(temp, '0', a->arg_len + 1);
             clean_leaks =  a->arg_str_conv;
             a->arg_str_conv = ft_cpy_to_nb(temp, a->arg_str_conv, 1, a->arg_len + 1);
             free(clean_leaks);

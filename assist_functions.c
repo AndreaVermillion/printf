@@ -76,37 +76,41 @@ char    *ft_cpy_to_char(char *s, char c)
     return (sub);
 }
 
-void    ft_find_arg_len(t_data *a)
+
+int    ft_find_arg_len_string_unicode(t_data *a)
 {
-    size_t i;
-    char *temp;
+    int total_byte_size;
+    int i;
 
     i = 0;
-    if (a->grp == 1)
+    total_byte_size = 0;
+    while (a->arg_uni_str_conv[i])
     {
-        if ((a->spe == 'p') || (a->spe == 's' && a->arg_str_conv != NULL))
-            a->arg_len = ft_strlen(a->arg_str_conv);
+        if (a->arg_uni_str_conv[i] <= 127)
+            total_byte_size = total_byte_size + 1;
 
-        else if ((a->spe == 's') && (a->arg_str_conv == NULL))
-        {
-            temp = ft_strdup("(null)");
-            a->arg_str_conv = temp;
-            a->arg_len = ft_strlen(temp);
-            free(temp);
-        }
-        else if ((a->spe == 'c' || a->spe == 'C') && (a->arg_char_conv != 0))
-            a->arg_len = 1;
+        else if (a->arg_uni_str_conv[i] >= 128 && a->arg_uni_str_conv[i] <= 2047)
+            total_byte_size = total_byte_size + 2;
 
-        else if ((a->spe == 'c' || a->spe == 'C') && (a->arg_char_conv == 0))
-            a->arg_len = 0;
+        else if (a->arg_uni_str_conv[i] >= 2048 && a->arg_uni_str_conv[i] <= 65335)
+            total_byte_size = total_byte_size + 3;
 
-        else if (a->spe == 'S')
-        {
-            while (a->arg_uni_str_conv[i])
-                i++;
-            a->arg_len = i;
-        }
+        else if (a->arg_uni_str_conv[i] >= 65536 && a->arg_uni_str_conv[i]<= 1114111)
+            total_byte_size = total_byte_size + 4;
+        i++;
     }
-    else
-        a->arg_len = ft_strlen(a->arg_str_conv);
+    return (total_byte_size);
+}
+
+int    ft_find_arg_len_char_unicode(t_data *a)
+{
+    if (a->arg_uni_char_conv <= 127)
+        return(1);
+    else if (a->arg_uni_char_conv >= 128 && a->arg_uni_char_conv <= 2047)
+        return(2);
+    else if (a->arg_uni_char_conv >= 2048 && a->arg_uni_char_conv <= 65335)
+        return(3);
+    else if (a->arg_uni_char_conv>= 65536 && a->arg_uni_char_conv<= 1114111)
+        return(4);
+    return(0);
 }

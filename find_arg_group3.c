@@ -42,7 +42,7 @@ void    ft_select_args_group3_len_1_part1(t_data *a, va_list arg) // VERIFIED
     else if (a->len[0] == 'z')
     {
         a->a_g3_z = va_arg(arg, size_t);
-        a->arg_str_conv = ft_itoa_base_unsigned(a->a_g3_z, 10);
+        a->arg_str_conv = ft_itoa_base_signed(a->a_g3_z, 10);
     }
 }
 

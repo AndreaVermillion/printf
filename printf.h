@@ -46,6 +46,7 @@ typedef struct s_data
     // [4] Length //
 
     char        *len;
+    int         len_len;
 
 
     /*------- Store all the argument types -------*/
@@ -172,7 +173,10 @@ char	*ft_itoa_base_signed(signed long long value, int base);
 
     /* Step 7: Find the lengths of different args */
 
-void    ft_find_arg_len(t_data *a);
+int    ft_find_arg_len_string_unicode(t_data *a);
+int    ft_find_arg_len_char_unicode(t_data *a);
+
+void    ft_select_args_group1_len_2(t_data *a, va_list arg);
 void    ft_select_args_group3_len_2(t_data *a, va_list arg);
 void    ft_select_args_group3_len_1(t_data *a, va_list arg);
 void    ft_select_args_group3_len_0(t_data *a, va_list arg);

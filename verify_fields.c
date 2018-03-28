@@ -263,21 +263,20 @@ int ft_verify_all_pre(t_data *a)
 int ft_verify_all_len(t_data *a, char c)
 {
     char * temp;
-    int len;
 
     temp = a->len;
     if (temp == NULL)                       // Step 1. Empty string means there is no lengths //
         return (1);
-    len = ft_strlen(temp);
-    if (len > 2)                            // Step 2. There cannot be more than 2 letters //
+    a->len_len = ft_strlen(temp);
+    if (a->len_len > 2)                            // Step 2. There cannot be more than 2 letters //
         return (0);                         // Step 3. Check content in pre //
-    if ((len == 2) && !((temp[0] == 'h' || temp[1] == 'h') || (temp[0] == 'l' || temp[1] == 'l')))
+    if ((a->len_len == 2) && !((temp[0] == 'h' || temp[1] == 'h') || (temp[0] == 'l' || temp[1] == 'l')))
         return (0);
-    if ((len == 1) && !(temp[0] == 'h' || temp[0] == 'l' || temp[0] == 'j' || temp[0] == 'z'))
+    if ((a->len_len == 1) && !(temp[0] == 'h' || temp[0] == 'l' || temp[0] == 'j' || temp[0] == 'z'))
         return (0);
-    if (c == 'S' || c == 'C') // Step 4. Check each spe //
+    if ((c == 'S' || c == 'C') && (a->len_len == 2 && !((temp[0] == 'h') && (temp[1] == 'h'))))// Step 4. Check each spe //
         return (0);
-    if ((c == 's' || c == 'c') && (len == 2))
+    if ((c == 's' || c == 'c') && (a->len_len == 2))
         return (0);
     if ((c == 's' || c == 'c') && (temp[0] == 'h' || temp[0] == 'j' || temp[0] == 'z'))
         return (0);
@@ -292,6 +291,9 @@ int ft_verify_all_fields(t_data *a, char c) // Step1
         !(ft_verify_all_len(a, c)))
     {
         ft_putstr("UNDEF");
+        if (a->len)
+            a->len_len = ft_strlen(a->len);
+        a->arg_len = -1;
         return (0);
     }
     return(1);

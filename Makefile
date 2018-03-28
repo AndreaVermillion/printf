@@ -6,7 +6,7 @@
 #    By: ancardi <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/08 21:24:13 by ancardi           #+#    #+#              #
-#    Updated: 2018/03/16 20:25:17 by ancardi          ###   ########.fr        #
+#    Updated: 2018/03/28 11:59:10 by ancardi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ SRCS = apply_fields.c \
 	   parse_fields.c \
 	   print_elements.c \
 	   printf.c \
+	   unicode_convert.c \
 	   reset_structures.c \
 	   verify_fields.c\
 
