@@ -8,7 +8,7 @@ void    ft_unicode_convert(unsigned int nb)
     unsigned char octet;
 
 
-    if (nb <= 127)
+    if (nb <= 127 || (nb <= 255 && MB_CUR_MAX == 1))
         ft_putchar(nb);
 
     else if (nb >= 128 && nb <= 2047)
