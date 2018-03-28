@@ -6,7 +6,7 @@
 #    By: ancardi <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/08 21:24:13 by ancardi           #+#    #+#              #
-#    Updated: 2018/03/28 19:48:15 by ancardi          ###   ########.fr        #
+#    Updated: 2018/03/28 19:55:15 by ancardi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ $(NAME): $(OBJ_LIST)
 	$(AR) rc $(NAME) $(OBJ_LIST)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -o $@ -c $<
+	$(CC) -c $< -o $@ $(CFLAGS)
 
 clean:
 	$(RM) $(OBJ_LIST)
