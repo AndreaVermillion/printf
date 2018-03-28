@@ -70,6 +70,7 @@ int ft_printf(const char* fmt,...)
     return (result);
 }
 
+/*
 int main(void)
 {
     int r_o;
@@ -88,3 +89,4 @@ printf("\n");
     printf("ret_mine_1 => %i\n", r_m);
 
 }
+*/
