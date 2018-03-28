@@ -6,7 +6,7 @@
 #    By: ancardi <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/08 21:24:13 by ancardi           #+#    #+#              #
-#    Updated: 2018/03/28 11:59:10 by ancardi          ###   ########.fr        #
+#    Updated: 2018/03/28 18:03:40 by ancardi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,22 +28,22 @@ SRCS = apply_fields.c \
 	   libft_fonctions.c \
 	   parse_fields.c \
 	   print_elements.c \
-	   printf.c \
+	   ft_printf.c \
 	   unicode_convert.c \
 	   reset_structures.c \
-	   verify_fields.c\
+	   verify_fields.c \
 
 OBJS = $(SRCS:.c=.o)
 
 FLAGS = -Wall -Wextra -Werror -c
 
-all: $(SRCS) $(NAME)
+all: $(NAME)
 
 $(NAME): $(OBJS)
-	@ar rc $(NAME) $(OBJS)
+	ar rc $(NAME) $(OBJS)
 
 %.o: %.c
-	@gcc $(FLAGS) $<
+	gcc $(FLAGS) $<
 
 clean:
 	rm -f $(OBJS)
