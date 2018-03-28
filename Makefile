@@ -6,15 +6,17 @@
 #    By: ancardi <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/08 21:24:13 by ancardi           #+#    #+#              #
-#    Updated: 2018/03/28 18:48:27 by ancardi          ###   ########.fr        #
+#    Updated: 2018/03/28 19:38:30 by ancardi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+.PHONY: all clean fclean re
 
 NAME = libftprintf.a
 
 CC = gcc
 
-SRCS = apply_fields.c \
+ORIGINAL_LIST = apply_fields.c \
 	   apply_precision_group1.c \
 	   apply_precision_group2.c \
 	   apply_precision_group3.c \
@@ -35,22 +37,24 @@ SRCS = apply_fields.c \
 	   reset_structures.c \
 	   verify_fields.c \
 
-OBJS = $(SRCS:.c=.o)
+OBJ_LIST = $(ORIGINAL_LIST:.c=.o)
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Werror -Wextra -I.
+
+CC = gcc
 
 all: $(NAME)
 
-#%.o: %.c 
-#	$(CC) $(CFLAGS) -o $@ -c $<
+%.o: %.c
+	$(CC) $(CFLAGS) -o $@ -c $<
 
-$(NAME): $(OBJS)
-	ar rc $(NAME) $(OBJS)
+$(NAME): $(OBJ_LIST)
+	$(AR) rc $(NAME) $(OBJ_LIST)
 
 clean:
-	rm -f $(OBJS)
+	$(RM) $(OBJ_LIST)
 
 fclean: clean
-	rm -f $(NAME)
+	$(RM) $(NAME) 
 
 re: fclean all
