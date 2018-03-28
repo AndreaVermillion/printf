@@ -6,11 +6,13 @@
 #    By: ancardi <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/08 21:24:13 by ancardi           #+#    #+#              #
-#    Updated: 2018/03/28 18:23:55 by ancardi          ###   ########.fr        #
+#    Updated: 2018/03/28 18:35:57 by ancardi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
+
+CC = gcc
 
 SRCS = apply_fields.c \
 	   apply_precision_group1.c \
@@ -35,15 +37,15 @@ SRCS = apply_fields.c \
 
 OBJS = $(SRCS:.c=.o)
 
-FLAGS = -Wall -Wextra -Werror -c
+CFLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
 
+%.o: %.c 
+	$(CC) $(CFLAGS) -o $@ -c $<
+
 $(NAME): $(OBJS)
 	ar rc $(NAME) $(OBJS)
-
-%.o: %.c
-	gcc $(FLAGS) $<
 
 clean:
 	rm -f $(OBJS)
