@@ -6,7 +6,7 @@
 #    By: ancardi <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/08 21:24:13 by ancardi           #+#    #+#              #
-#    Updated: 2018/03/28 19:55:15 by ancardi          ###   ########.fr        #
+#    Updated: 2018/03/28 20:46:34 by ancardi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ ORIGINAL_LIST = apply_fields.c \
 	   ft_printf.c \
 	   unicode_convert.c \
 	   reset_structures.c \
-	   verify_fields.c \
+	   verify_fields.c
 
 OBJ_LIST = $(ORIGINAL_LIST:.c=.o)
 
