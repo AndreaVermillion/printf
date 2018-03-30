@@ -286,25 +286,11 @@ char		*ft_itoa_base_signed(signed long long int n, int base)
     return (ft_convert_signed(n, base, str, i));
 }
 
-void	ft_memdel (void **ap)
+void	ft_memdel(void **ap)
 {
     if (ap && *ap)
     {
         free(*ap);
         *ap = NULL;
     }
-}
-
-int		ft_check_if_there_is_a_char(char *str)
-{
-    int i;
-
-    i = 0;
-    while (str[i])
-    {
-        if ((str[i] >= 'a' && str[i] <= 'z') || (str[i] >= 'A' && str[i] <= 'Z'))
-            return (1);
-        i++;
-    }
-    return (0);
 }

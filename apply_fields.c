@@ -297,8 +297,7 @@ void    ft_apply_fields(t_data *a)
     if (a->wtp == 1) // W// What to print? or What to process //  by default it is 1 = numbers || 2 == string of characters  || 3 = string of characters in unicode || 4 = just one character || 5 = just one character in unicode || 6 = pointer
     {
         a->arg_len = ft_strlen(a->arg_str_conv); // 1 = numbers
-        if (!(ft_check_if_there_is_a_char(a->arg_str_conv)))
-            a->arg_atoi_int = ft_atoi(a->arg_str_conv);
+        a->arg_atoi_int = ft_atoi(a->arg_str_conv);
         ft_apply_precision(a);
         temp = ft_strdup(a->arg_str_conv);
         a->arg_len = ft_strlen(temp);

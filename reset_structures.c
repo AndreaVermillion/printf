@@ -17,7 +17,7 @@ void ft_set_everything_to_zero(t_data *a)
     a->len_len = 0;
     a->arg_char_conv = 0;  // int
     a->arg_uni_char_conv = 0;    // unsigned int
-    a->arg_atoi_int = 1;          // int
+    a->arg_atoi_int = 0;          // int
     a->arg_str_conv = NULL;             // char *
     a->arg_uni_str_conv = 0;         // unsigned int
     a->arg_len = 0;                   // int

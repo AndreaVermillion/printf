@@ -112,7 +112,7 @@ int    ft_printf(const char* fmt,...);
 char	*ft_strcpy(char *dst, const char *src);
 char	*ft_strncpy(char *dst, const char *src, size_t n);
 void	ft_memdel(void **ap);
-int		ft_check_if_there_is_a_char(char *str);
+
 
 
 
