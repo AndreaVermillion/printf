@@ -69,23 +69,3 @@ int ft_printf(const char* fmt,...)
     // free(a);
     return (result);
 }
-
-
-int main(void)
-{
-    int r_o;
-    int r_m;
-
-    char *test_simple_mix;
-
-    setlocale(LC_ALL, "");
-
-    r_o = printf("|%#1x|\n",10);
-printf("\n");
-    r_m = ft_printf("|%#1x|\n",10);
-
-printf("\n");
-    printf("ret_origin => %i\n", r_o);
-    printf("ret_mine_1 => %i\n", r_m);
-
-}
