@@ -1,55 +1,88 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   unicode_convert.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ancardi <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/03/30 20:34:17 by ancardi           #+#    #+#             */
+/*   Updated: 2018/03/30 20:41:29 by ancardi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "printf.h"
 
-void    ft_unicode_convert(unsigned int nb)
+void	ft_unicode_convert_65536_to_1114111(unsigned char octet,
+		unsigned int nb, unsigned int m3)
 {
-    unsigned int mask1 = 49280;
-    unsigned int mask2= 14712960;
-    unsigned int mask3= 4034953344;
-    unsigned char octet;
+	unsigned char o4;
+	unsigned char o3;
+	unsigned char o2;
+	unsigned char o1;
 
+	o4 = (nb << 26) >> 26;
+	o3 = ((nb >> 6) << 26) >> 26;
+	o2 = ((nb >> 12) << 26) >> 26;
+	o1 = ((nb >> 18) << 29) >> 29;
+	octet = (m3 >> 24) | o1;
+	write(1, &octet, 1);
+	octet = ((m3 << 8) >> 24) | o2;
+	write(1, &octet, 1);
+	octet = ((m3 << 16) >> 24) | o3;
+	write(1, &octet, 1);
+	octet = ((m3 << 24) >> 24) | o4;
+	write(1, &octet, 1);
+}
 
-    if (nb <= 127 || (nb <= 255 && MB_CUR_MAX == 1))
-        ft_putchar(nb);
+void	ft_unicode_convert_2048_to_65535(unsigned char octet,
+		unsigned int nb, unsigned int m2)
+{
+	unsigned char o3;
+	unsigned char o2;
+	unsigned char o1;
 
-    else if (nb >= 128 && nb <= 2047)
-    {
-        unsigned char o2 = (nb << 26) >> 26; // Восстановление первых 6 бит 110xxxxx 10(xxxxxx)
-        unsigned char o1 = ((nb >> 6) << 27) >> 27; // Восстановление последних 5 бит 110(xxxxx) 10xxxxxx
+	o3 = (nb << 26) >> 26;
+	o2 = ((nb >> 6) << 26) >> 26;
+	o1 = ((nb >> 12) << 28) >> 28;
+	octet = (m2 >> 16) | o1;
+	write(1, &octet, 1);
+	octet = ((m2 << 16) >> 24) | o2;
+	write(1, &octet, 1);
+	octet = ((m2 << 24) >> 24) | o3;
+	write(1, &octet, 1);
+}
 
-        octet = ( mask1 >> 8 ) | o1 ; // Apply the first bitmask to the first byte
-        write(1, &octet, 1);
-        octet = ( ( mask1 << 24 ) >> 24 ) | o2 ; // Apply the second bitmask to the second byte
-        write(1, &octet, 1);
-    }
+void	ft_unicode_convert_128_to_2047(unsigned char octet,
+		unsigned int nb, unsigned int m1)
+{
+	unsigned char o2;
+	unsigned char o1;
 
-    else if (nb >= 2048 && nb <= 65535)
-    {
-        unsigned char o3 = (nb << 26) >> 26; // Восстановление первых 6 бит 1110xxxx 10xxxxxx 10(xxxxxx)
-        unsigned char o2 = ((nb >> 6) << 26) >> 26; // Восстановление вторых 6 бит 1110xxxx 10(xxxxxx) 10xxxxxx
-        unsigned char o1 = ((nb >> 12) << 28) >> 28; // Восстановление последних 4 бит 1110(xxxx) 10xxxxxx 10xxxxxx
+	o2 = (nb << 26) >> 26;
+	o1 = ((nb >> 6) << 27) >> 27;
+	octet = (m1 >> 8) | o1;
+	write(1, &octet, 1);
+	octet = ((m1 << 24) >> 24) | o2;
+	write(1, &octet, 1);
+}
 
-        octet = ( mask2 >> 16 ) | o1 ; // Apply the first bitmask to the first byte
-        write(1, &octet, 1);
-        octet = ( ( mask2 << 16 ) >> 24 ) | o2 ; // Apply the second bitmask to the second byte
-        write(1, &octet, 1);
-        octet = ( ( mask2 << 24 ) >> 24 ) | o3 ; // Apply the third bit mask to the third byte
-        write(1, &octet, 1);
-    }
+void	ft_unicode_convert(unsigned int nb)
+{
+	unsigned int	m1;
+	unsigned int	m2;
+	unsigned int	m3;
+	unsigned char	octet;
 
-    else if (nb >= 65536 && nb <= 1114111)
-    {
-        unsigned char o4 = (nb << 26) >> 26; // Восстановление первых 6 11110xxx 10xxxxxx 10xxxxxx 10(xxxxxx)
-        unsigned char o3 = ((nb >> 6) << 26) >> 26; // Восстановление вторых 6 бит 11110xxx 10xxxxxx 10(xxxxxx) 10xxxxxx
-        unsigned char o2 = ((nb >> 12) << 26) >> 26;  // Восстановление третьих 6 бит bits 11110xxx 10(xxxxxx) 10xxxxxx 10xxxxxx
-        unsigned char o1 = ((nb >> 18) << 29) >> 29; // Восстановление последних 3 бита 11110(xxx) 10xxxxxx 10xxxxxx 10xxxxxx
-
-        octet = ( mask3 >> 24 ) | o1 ; // Apply the first byte bits to the first byte of the mask
-        write(1, &octet, 1);
-        octet = ( ( mask3 << 8 ) >> 24 ) | o2 ; // Apply the second bitmask to the second byte
-        write(1, &octet, 1);
-        octet = ( ( mask3 << 16 ) >> 24 ) | o3 ; // Apply the third bit mask to the third byte
-        write(1, &octet, 1);
-        octet = ( ( mask3 << 24 ) >> 24 ) | o4 ; // Apply the last bitmask to the last byte
-        write(1, &octet, 1);
-    }
+	m1 = 49280;
+	m2 = 14712960;
+	m3 = 4034953344;
+	octet = '\0';
+	if (nb <= 127 || (nb <= 255 && MB_CUR_MAX == 1))
+		ft_putchar(nb);
+	else if (nb >= 128 && nb <= 2047)
+		ft_unicode_convert_128_to_2047(octet, nb, m1);
+	else if (nb >= 2048 && nb <= 65535)
+		ft_unicode_convert_2048_to_65535(octet, nb, m2);
+	else if (nb >= 65536 && nb <= 1114111)
+		ft_unicode_convert_65536_to_1114111(octet, nb, m3);
 }
